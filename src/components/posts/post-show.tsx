@@ -7,12 +7,13 @@ interface PostShowProps {
 
 export default async function PostShow({ postId }: PostShowProps) {
   //  its fine to get component data inside it , Dont go crazy with reusable components
+  await new Promise((resolve) => setTimeout(resolve, 2500));
   const post = await db.post.findFirst({
     where: { id: postId },
   });
 
   if (!post) {
-    notFound()
+    notFound();
   }
   return (
     <div className='m-4'>

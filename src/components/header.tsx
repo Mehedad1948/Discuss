@@ -3,10 +3,11 @@ import {
   Navbar,
   NavbarBrand,
   NavbarContent,
-  Input,
   NavbarItem,
 } from '@nextui-org/react';
 import HeaderAuth from './header-auth';
+import SearchInput from './search-input';
+import { Suspense } from 'react';
 
 const Header = () => {
   // const session = await auth();
@@ -23,7 +24,10 @@ const Header = () => {
       </NavbarBrand>
       <NavbarContent justify='center'>
         <NavbarItem>
-          <Input />
+          {/*  to prevent Deopt Error on build , beacuse of use of useParams in client component */}
+          <Suspense>
+            <SearchInput />
+          </Suspense>
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify='end'>
